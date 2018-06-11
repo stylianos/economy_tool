@@ -10,9 +10,9 @@ public class CSVReader_Dictionary : MonoBehaviour
     static string LINE_SPLIT_RE = @"\r\n|\n\r|\n|\r";
     static char[] TRIM_CHARS = { '\"' };
 
-    public static List<Dictionary<string, object>> Read(string file)
+    public static Dictionary<string,Dictionary<string, object>> Read(string file)
     {
-        var list = new List<Dictionary<string, object>>();
+        var list = new Dictionary<string, Dictionary<string, object>>();
         TextAsset data = Resources.Load(file) as TextAsset;
 
         var lines = Regex.Split(data.text, LINE_SPLIT_RE);
@@ -27,7 +27,7 @@ public class CSVReader_Dictionary : MonoBehaviour
             if (values.Length == 0 || values[0] == "") continue;
 
             var entry = new Dictionary<string, object>();
-            for (var j = 0; j < header.Length && j < values.Length; j++)
+            for (var j = 1; j < header.Length && j < values.Length; j++)
             {
                 string value = values[j];
                 value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
@@ -44,7 +44,7 @@ public class CSVReader_Dictionary : MonoBehaviour
                 }
                 entry[header[j]] = finalvalue;
             }
-            list.Add(entry);
+            list.Add(values[0],entry);
         }
         return list;
     }
