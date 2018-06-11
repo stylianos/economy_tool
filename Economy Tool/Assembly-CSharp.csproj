@@ -60,6 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CSVReader.cs" />
+    <Compile Include="Assets\Scripts\CSVReader_Dictionary.cs" />
+    <Compile Include="Assets\Scripts\CSVReader_Dictionary_Demo.cs" />
+    <Compile Include="Assets\Scripts\CSVReader_Stelios.cs" />
     <Compile Include="Assets\Scripts\ReadDemo.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/gbavramst/Documents/GitHub/economy_tool/Economy Tool/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
