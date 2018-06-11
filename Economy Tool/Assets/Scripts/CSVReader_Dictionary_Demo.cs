@@ -1,28 +1,31 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class CSVReader_Dictionary_Demo : MonoBehaviour
 {
+    public GameObject m_DropdownList;
+    Dropdown m_Dropdown;
+    Dictionary<string, Dictionary<string, object>> data, data_2;
 
     void Awake()
     {
 
-        Dictionary<string, Dictionary<string, object>> data = CSVReader_Dictionary.Read("page_1");
-        Dictionary<string, Dictionary<string, object>> data_2 = CSVReader_Dictionary.Read("page_2");
-        for (var i = 0; i < data.Count; i++)
-        {
-            //print("name " + data[i]["name"] + " " +
-            //       "age " + data[i]["age"] + " " +
-            //       "speed " + data[i]["speed"] + " " +
-            //       "desc " + data[i]["description"]);
-       }
+       data = CSVReader_Dictionary.Read("page_1");
+       data_2 = CSVReader_Dictionary.Read("page_2");
 
     }
 
     // Use this for initialization
     void Start()
     {
+        m_Dropdown      = m_DropdownList.GetComponent<Dropdown>();
+        foreach (KeyValuePair<string, Dictionary<string,object>> entry in data)
+        {
+            m_Dropdown.options.Add(new Dropdown.OptionData(entry.Key));
+        }
+
     }
 
     // Update is called once per frame
