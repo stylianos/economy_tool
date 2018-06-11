@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Advanced_Logic.cs" />
     <Compile Include="Assets\Scripts\CSVReader.cs" />
     <Compile Include="Assets\Scripts\CSVReader_Dictionary.cs" />
     <Compile Include="Assets\Scripts\CSVReader_Dictionary_Demo.cs" />
