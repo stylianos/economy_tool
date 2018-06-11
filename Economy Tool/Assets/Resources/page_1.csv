@@ -1,4 +1,4 @@
-Resource name,Level at which the resource is unlocked,Minutes to produce the resource,Number of resources produced
+Name,Level,Minutes,Number
 Cotton,1,2,2
 Fishing Net,2,1,1
 Fish,2,2,1
