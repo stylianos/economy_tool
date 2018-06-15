@@ -3,41 +3,52 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class CSVReader_Dictionary_Demo : MonoBehaviour
+public class Advanced_Logic : MonoBehaviour
 {
-    public GameObject m_DropdownList;
-    public GameObject m_Level;
-    public GameObject m_Minutes;
-    public GameObject m_Number;
+    public GameObject       m_DropdownList;
+    public GameObject       m_InputPair;
+    public RectTransform    m_Content;
 
-    InputField  m_InputLevel;
-    InputField  m_InputMinutes;
-    InputField  m_InputNumber;
     string      m_ActiveOption;
     Dropdown    m_Dropdown;
     Dictionary<string, Dictionary<string, object>> data, data_2;
+    Dictionary<string, GameObject> m_NameDictionary, m_InputDictionary;
 
     void Awake()
     {
 
-       data = CSVReader_Dictionary.Read("page_1");
-       data_2 = CSVReader_Dictionary.Read("page_2");
+        data = CSVReader_Dictionary.Read("page_1");
+        data_2 = CSVReader_Dictionary.Read("page_2");
+        m_NameDictionary = new Dictionary<string, GameObject>();
+        m_InputDictionary = new Dictionary<string, GameObject>();
     }
 
     // Use this for initialization
     void Start()
     {
         m_Dropdown      = m_DropdownList.GetComponent<Dropdown>();
-        m_InputLevel    = m_Level.GetComponent<InputField>();
-        m_InputMinutes  = m_Minutes.GetComponent<InputField>();
-        m_InputNumber   = m_Number.GetComponent<InputField>();
 
         m_Dropdown.onValueChanged.AddListener(delegate {
             DropdownValueChangedHandler(m_Dropdown);
         });
-        foreach (KeyValuePair<string, Dictionary<string,object>> entry in data)
+        foreach (KeyValuePair<string, Dictionary<string,object>> entry in data_2)
         {
             m_Dropdown.options.Add(new Dropdown.OptionData(entry.Key));
+            GameObject new_Element = Object.Instantiate(m_InputPair, m_Content);
+            //Get the Children of each new input field to appoint them to the appropriate dictionaries. 
+            foreach (Transform child in new_Element.transform)
+            {
+                if ( child.name == "Name")
+                {
+                    m_NameDictionary.Add(entry.Key, child.gameObject);
+                    child.GetComponent<Text>().text = entry.Key;
+                }
+                if (child.name == "Input")
+                {
+                    m_InputDictionary.Add(entry.Key, child.gameObject);
+                    child.GetComponent<InputField>().text = "0";
+                }
+            }
         }
 
     }
@@ -59,26 +70,11 @@ public class CSVReader_Dictionary_Demo : MonoBehaviour
     private void UpdateSelectedOption( )
     {
         object result;
-        if (data[m_ActiveOption].TryGetValue("Level", out result))
-        {
-            m_InputLevel.text = result.ToString();
-        }
-        if (data[m_ActiveOption].TryGetValue("Minutes", out result))
-        {
-            m_InputMinutes.text = result.ToString();
-        }
-        if (data[m_ActiveOption].TryGetValue("Number", out result))
-        {
-            m_InputNumber.text = result.ToString();
-        }
+  
     }
 
     public void UpdateValues()
     {
-
-        data[m_ActiveOption]["Level"]   = m_InputLevel.text;
-        data[m_ActiveOption]["Minutes"] = m_InputMinutes.text;
-        data[m_ActiveOption]["Number"]  = m_InputNumber.text;
         Debug.Log("I updated the values");
     }
 }

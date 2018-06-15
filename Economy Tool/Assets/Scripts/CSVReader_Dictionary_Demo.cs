@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Advanced_Logic : MonoBehaviour
+public class CSVReader_Dictionary_Demo : MonoBehaviour
 {
     public GameObject m_DropdownList;
     public GameObject m_Level;
