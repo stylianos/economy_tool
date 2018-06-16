@@ -15,14 +15,14 @@ public class Advanced_Logic : MonoBehaviour
     private bool m_OptionSet;
     string      m_ActiveOption;
     Dropdown    m_Dropdown;
-    Dictionary<string, Dictionary<string, int>> data, data_2;
+    SortedDictionary<string, Dictionary<string, int>> data, data_2;
     Dictionary<string, GameObject> m_NameDictionary, m_InputDictionary;
 
     void Awake()
     {
 
-        data = CSVReader_Dictionary.ReadString("page_1");
-        data_2 = CSVReader_Dictionary.ReadString("page_2");
+        data = CSVReader_Dictionary.ReadStringSorted("page_1");
+        data_2 = CSVReader_Dictionary.ReadStringSorted("page_2");
         m_NameDictionary = new Dictionary<string, GameObject>();
         m_InputDictionary = new Dictionary<string, GameObject>();
         m_OptionSet = false; 
