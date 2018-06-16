@@ -7,9 +7,12 @@ using System;
 public class Advanced_Logic : MonoBehaviour
 {
     public GameObject       m_DropdownList;
+    public GameObject       m_DropdownLabel;
     public GameObject       m_InputPair;
     public RectTransform    m_Content;
+    public Text m_Output;
 
+    private bool m_OptionSet;
     string      m_ActiveOption;
     Dropdown    m_Dropdown;
     Dictionary<string, Dictionary<string, int>> data, data_2;
@@ -22,6 +25,7 @@ public class Advanced_Logic : MonoBehaviour
         data_2 = CSVReader_Dictionary.ReadString("page_2");
         m_NameDictionary = new Dictionary<string, GameObject>();
         m_InputDictionary = new Dictionary<string, GameObject>();
+        m_OptionSet = false; 
     }
 
     // Use this for initialization
@@ -34,7 +38,15 @@ public class Advanced_Logic : MonoBehaviour
         });
         foreach (KeyValuePair<string, Dictionary<string,int>> entry in data_2)
         {
+            
             m_Dropdown.options.Add(new Dropdown.OptionData(entry.Key));
+            //Set the first value
+            if (!m_OptionSet)
+            {
+                m_DropdownLabel.GetComponent<Text>().text = entry.Key;
+                m_OptionSet = true;
+                m_ActiveOption = entry.Key; 
+            }
             GameObject new_Element = GameObject.Instantiate(m_InputPair, m_Content);
             //Get the Children of each new input field to appoint them to the appropriate dictionaries. 
             foreach (Transform child in new_Element.transform)
@@ -51,6 +63,8 @@ public class Advanced_Logic : MonoBehaviour
                 }
             }
         }
+        m_DropdownList.GetComponent<Dropdown>().value = 0;
+        UpdateSelectedOption();
 
     }
 
@@ -86,5 +100,21 @@ public class Advanced_Logic : MonoBehaviour
             data_2[m_ActiveOption][keyList[i]] = Int32.Parse(m_InputDictionary[keyList[i]].GetComponent<InputField>().text);
         }
         Debug.Log("I updated the values");
+        m_Output.color = Color.white;
+        m_Output.text = "I updated the values";
+    }
+
+    public void CheckForLocks()
+    {
+        m_Output.text = "";
+        m_Output.color = Color.yellow;
+        foreach (KeyValuePair<string, Dictionary<string, int>> entry in data_2)
+        {
+            if ( data_2[entry.Key][entry.Key] != 0 )
+            {
+                m_Output.text = m_Output.text + " DeadLock detected !! " + entry.Key + " requires itself " + "\n";
+            
+            }
+        }
     }
 }
