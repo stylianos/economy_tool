@@ -800,7 +800,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 181.1, y: 182.8}
+  m_AnchoredPosition: {x: 181.1, y: 139}
   m_SizeDelta: {x: 832.9, y: 565.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &612733699
@@ -1249,7 +1249,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 391, y: -216}
+  m_AnchoredPosition: {x: -43, y: -216}
   m_SizeDelta: {x: 271.1, y: 72.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1322758903
@@ -1278,7 +1278,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 3
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 1
@@ -1393,7 +1393,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -36, y: -318}
+  m_AnchoredPosition: {x: -476, y: -318}
   m_SizeDelta: {x: 381.1, y: 89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1389732878
@@ -1802,8 +1802,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 343015607}
   m_HandleRect: {fileID: 343015606}
   m_Direction: 0
-  m_Value: 0
-  m_Size: 1
+  m_Value: 0.5
+  m_Size: 0.99999994
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2127,7 +2127,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -493.7, y: 429.2}
+  m_AnchoredPosition: {x: -493.7, y: 391}
   m_SizeDelta: {x: 388.7, y: 53.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1862671629
@@ -2164,7 +2164,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -36, y: -209}
+  m_AnchoredPosition: {x: -476, y: -209}
   m_SizeDelta: {x: 381.1, y: 89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1862671631
@@ -2319,7 +2319,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Check for Locks
+  m_Text: Check for Deadlocks
 --- !u!222 &1959432555
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -72,7 +72,7 @@ public class CSVReader_Dictionary : MonoBehaviour
                 value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
                 int finalvalue = 0;
                 int n;
-                float f;
+                //float f;
                 if (int.TryParse(value, out n))
                 {
                     finalvalue = n;
