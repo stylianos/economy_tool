@@ -42,6 +42,7 @@ public class Advanced_Logic : MonoBehaviour
         m_Dropdown          = m_DropdownList.GetComponent<Dropdown>();
         m_Minutes           = m_DropdownListMinutes.GetComponent<Dropdown>();
         m_SessionsPerDay    = m_DropdownListSessions.GetComponent<Dropdown>();
+        //Adding the appropriate delegates for the dropdown events
         m_Dropdown.onValueChanged.AddListener(delegate {
             DropdownValueChangedHandler(m_Dropdown);
         });
@@ -87,7 +88,6 @@ public class Advanced_Logic : MonoBehaviour
     void Update()
     {
 
-  
     }
     //Function notifying that the selection changed
     private void DropdownValueChangedHandler(Dropdown target)
@@ -113,7 +113,23 @@ public class Advanced_Logic : MonoBehaviour
         List<string> keyList = new List<string>(data_2[m_ActiveOption].Keys);
         for (var i = 0; i < keyList.Count; i++)
         {
-            data_2[m_ActiveOption][keyList[i]] = Int32.Parse(m_InputDictionary[keyList[i]].GetComponent<InputField>().text);
+            try
+            {
+                data_2[m_ActiveOption][keyList[i]] = Int32.Parse(m_InputDictionary[keyList[i]].GetComponent<InputField>().text);
+            }
+            catch (FormatException)
+            {
+                m_Output.color = Color.yellow;
+                m_Output.text = "Wrong format exception!! Mistake at  " + keyList[i];
+                return;
+            }
+            catch (OverflowException)
+            {
+                m_Output.color = Color.yellow;
+                m_Output.text = "Overflow exception!!" + data_2[m_ActiveOption][keyList[i]];
+                return;
+            }
+            
         }
         Debug.Log("I updated the values");
         m_Output.color = Color.white;

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Advanced_resource.unity
+- path: Assets/Scenes/Basic_resource.unity
   isLoaded: 1
   isActive: 1
