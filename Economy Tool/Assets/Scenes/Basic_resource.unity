@@ -2473,6 +2473,58 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+--- !u!1 &1412028105
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1412028108}
+  - component: {fileID: 1412028107}
+  - component: {fileID: 1412028106}
+  m_Layer: 0
+  m_Name: Reader
+  m_TagString: Reader
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1412028106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1412028105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eb7525069f6f4b44a87d9d67775de24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1412028107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1412028105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b6060b3d27553c4e8020c0d12a591b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1412028108
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1412028105}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.00090126693, y: 1.075427, z: 89.932304}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1433333344
 GameObject:
   m_ObjectHideFlags: 0
@@ -3185,7 +3237,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2044550927}
-  - component: {fileID: 2044550930}
   - component: {fileID: 2044550929}
   m_Layer: 0
   m_Name: Logic
@@ -3227,17 +3278,7 @@ MonoBehaviour:
   m_InputNumber: {fileID: 1784187108}
   m_Content: {fileID: 1364788804}
   m_Output: {fileID: 1758578309}
---- !u!114 &2044550930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2044550924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b6060b3d27553c4e8020c0d12a591b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Reader: {fileID: 1412028106}
 --- !u!1 &2070044327
 GameObject:
   m_ObjectHideFlags: 0

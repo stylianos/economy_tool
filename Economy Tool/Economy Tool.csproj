@@ -312,14 +312,14 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\LoadScene.cs" />
     <Compile Include="Assets\Scripts\Advanced_Logic.cs" />
     <Compile Include="Assets\Scripts\Basic_Logic.cs" />
-    <Compile Include="Assets\Scripts\Basic_Logic_2.cs" />
     <Compile Include="Assets\Scripts\CSVReader.cs" />
     <Compile Include="Assets\Scripts\CSVReader_Dictionary.cs" />
     <Compile Include="Assets\Scripts\CSVReader_Stelios.cs" />
+    <Compile Include="Assets\Scripts\LoadScene.cs" />
     <Compile Include="Assets\Scripts\ReadDemo.cs" />
+    <Compile Include="Assets\Scripts\Reader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="C:\Users\stelios\AppData\Local\Unity\cache\packages\packages.unity.com\com.unity.package-manager-ui@1.8.8\Editor\Resources\Styles\Main_Dark.uss" />

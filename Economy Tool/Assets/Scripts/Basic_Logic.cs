@@ -18,20 +18,21 @@ public class Basic_Logic : MonoBehaviour
     string m_ActiveOption;
     Dropdown m_Dropdown;
     SortedDictionary<string, Dictionary<string, int>> data;
-    Dictionary<string, GameObject> m_NameDictionary, m_InputDictionary;
+    GameObject m_Reader;
 
     void Awake()
     {
 
-        data = CSVReader_Dictionary.ReadStringSorted("page_1");
-        m_NameDictionary = new Dictionary<string, GameObject>();
-        m_InputDictionary = new Dictionary<string, GameObject>();
+        //data = CSVReader_Dictionary.ReadStringSorted("page_1");
         m_OptionSet = false;
     }
 
     // Use this for initialization
     void Start()
     {
+        m_Reader = GameObject.FindWithTag("Reader");
+        //Get the appropriate data
+        data = m_Reader.GetComponent<Reader>().data;
         m_Dropdown = m_DropdownList.GetComponent<Dropdown>();
         //Adding the appropriate delegates for the dropdown events
         m_Dropdown.onValueChanged.AddListener(delegate {
@@ -92,7 +93,7 @@ public class Basic_Logic : MonoBehaviour
     public void UpdateValues()
     {
         //You cannot use a for each loop in order to change values, I am putting every key in a list and iterate that list instead. 
-        List<string> keyList = new List<string>(data[m_ActiveOption].Keys);
+
         try
         {
             data[m_ActiveOption]["Number"] = Int32.Parse(m_InputNumber.text);

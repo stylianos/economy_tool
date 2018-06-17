@@ -12,11 +12,12 @@ public class Advanced_Logic : MonoBehaviour
     public GameObject       m_DropdownLabel;
     public GameObject       m_InputPair;
     public RectTransform    m_Content;
-    public Text m_Output;
-    public Text m_LevelRequired;
-    public Text m_TimeToBuild;
-    public Text m_TimeToBuildDays;
-    public Text m_NumberofSessions;
+    public Text             m_Output;
+    public Text             m_LevelRequired;
+    public Text             m_TimeToBuild;
+    public Text             m_TimeToBuildDays;
+    public Text             m_NumberofSessions;
+    GameObject              m_Reader;
 
     private bool m_OptionSet;
     string      m_ActiveOption;
@@ -29,16 +30,19 @@ public class Advanced_Logic : MonoBehaviour
     void Awake()
     {
 
-        data = CSVReader_Dictionary.ReadStringSorted("page_1");
-        data_2 = CSVReader_Dictionary.ReadStringSorted("page_2");
         m_NameDictionary = new Dictionary<string, GameObject>();
         m_InputDictionary = new Dictionary<string, GameObject>();
         m_OptionSet = false; 
+        
     }
 
     // Use this for initialization
     void Start()
     {
+        m_Reader = GameObject.FindWithTag("Reader");
+        //Get the appropriate data
+        data    = m_Reader.GetComponent<Reader>().data;
+        data_2  = m_Reader.GetComponent<Reader>().data2;
         m_Dropdown          = m_DropdownList.GetComponent<Dropdown>();
         m_Minutes           = m_DropdownListMinutes.GetComponent<Dropdown>();
         m_SessionsPerDay    = m_DropdownListSessions.GetComponent<Dropdown>();
@@ -148,7 +152,15 @@ public class Advanced_Logic : MonoBehaviour
                 m_Output.text = m_Output.text + " DeadLock detected! " + entry.Key + " requires itself " + "\n";
             
             }
+            foreach (KeyValuePair<string, int> entry_specific in entry.Value)
+            {
+                if ( entry_specific.Value < 0)
+                {
+                    m_Output.text = m_Output.text + " Negative number detected!" + entry.Key + " requires " + entry_specific.Value + " of " + entry_specific.Key + "\n";
+                }
+            }
         }
+
     }
 
     public void CalculateTimeToBuild()
@@ -170,9 +182,17 @@ public class Advanced_Logic : MonoBehaviour
             }
            
         }
+
+        //Add the time to build the item itself !!
+        time_to_build += data[m_ActiveOption]["Minutes"];
+        if ( data[m_ActiveOption]["Level"] > level_required )
+        {
+            level_required = data[m_ActiveOption]["Level"];
+        }
+
         //Debug.Log("This is teh currrnet selection frot the minutes per sessions" + m_Minutes.captionText.text);
         //Debug.Log("This is the otehr one" + m_SessionsPerDay.captionText.text);
-        m_TimeToBuild.text = time_to_build.ToString();
+        m_TimeToBuild.text = time_to_build.ToString() + " of which " + data[m_ActiveOption]["Minutes"].ToString() + " for the item itself";
         m_LevelRequired.text = level_required.ToString();
         int minutes_per_sessions = Int32.Parse(m_Minutes.captionText.text);
         int sessions_per_day = Int32.Parse(m_SessionsPerDay.captionText.text);
