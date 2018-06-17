@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.IO;
 
 public class Basic_Logic : MonoBehaviour
 {
@@ -88,6 +89,47 @@ public class Basic_Logic : MonoBehaviour
                m_InputNumber.text = entry.Value.ToString();
             }
         }
+
+
+        /*
+        using (var writer = new StreamWriter("Assets/Resources/test.csv"))
+        {
+
+            foreach (KeyValuePair<string, Dictionary<string, int>> entry in data)
+            {
+                
+                foreach (KeyValuePair<string, int> entry_specific in entry.Value)
+                {
+                    writer.WriteLine("{0};{1};", entry_specific.Key, entry_specific.Value);
+                }
+            }
+        }*/
+
+    }
+
+    public void CheckForLocks()
+    {
+        m_Output.text = "";
+        m_Output.color = Color.yellow;
+        bool found_error = false; 
+        foreach (KeyValuePair<string, Dictionary<string, int>> entry in data)
+        {
+          
+            foreach (KeyValuePair<string, int> entry_specific in entry.Value)
+            {
+                if (entry_specific.Value < 0)
+                {
+                    m_Output.text = m_Output.text + " Negative number detected!" + entry.Key + " requires " + entry_specific.Value + " of " + entry_specific.Key + "\n";
+                    found_error = true;
+                }
+            }
+        }
+        if (!found_error)
+        {
+            m_Output.color = Color.white;
+            m_Output.text = "No errors found!";
+        }
+
     }
 
     public void UpdateValues()
